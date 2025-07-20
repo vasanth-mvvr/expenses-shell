@@ -5,8 +5,8 @@ TIMESTAMP=$(date +%F-%I:%M:%S-%p)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
-echo "please enter the password"
-read -s my_sql_password
+# echo "please enter the password"
+# read -s my_sql_password
 
 R="\e[31m"
 G="\e[32m"

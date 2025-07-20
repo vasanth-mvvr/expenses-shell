@@ -40,11 +40,11 @@ VALIDATE $? "Started nginx"
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Removed the default content"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
+curl -o /home/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Received frontend file"
 
 cd /usr/share/nginx/html &>>$LOGFILE
-unzip /tmp/frontend.zip &>>$LOGFILE
+unzip /home/frontend.zip &>>$LOGFILE
 VALIDATE $? "unzipped the files"
 
 cp /home/ec2-user/expenses-shell/expense.conf /etc/nginx/system.d/expense.conf  &>>$LOGFILE

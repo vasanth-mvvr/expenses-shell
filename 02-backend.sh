@@ -52,12 +52,12 @@ fi
 mkdir -p /app &>>$LOGFILE #Here -p is used for validating if the directory is present it ignores or else it creates a new directory
 VALIDATE $? "directory created successfully"
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
+curl -o /home/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE $? "Extracted backend code"
 
 cd /app
 rm -rf /app/* &>>$LOGFILE
-unzip /tmp/backend.zip &>>$LOGFILE
+unzip /home/backend.zip &>>$LOGFILE
 VALIDATE $? "Extracted file successfully"
 
 npm install &>>$LOGFILE

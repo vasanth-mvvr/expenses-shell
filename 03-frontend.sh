@@ -28,11 +28,11 @@ else
     echo "you are super user"
 fi
 
-systemctl enable nginx &>>$LOGFILE
-VALIDATE $? "Enabled nginx"
-
 dnf install nginx -y &>>$LOGFILE
 VALIDATE $? "Installed nginx"
+
+systemctl enable nginx &>>$LOGFILE
+VALIDATE $? "Enabled nginx"
 
 systemctl start nginx &>>$LOGFILE
 VALIDATE $? "Started nginx"

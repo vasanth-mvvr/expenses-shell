@@ -37,18 +37,18 @@ VALIDATE $? "Enabled nginx"
 systemctl start nginx &>>$LOGFILE
 VALIDATE $? "Started nginx"
 
-rm -rf /usr/share/nginx/html* &>>$LOGFILE
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Removed the default content"
 
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Received frontend file"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>$LOGFILE
 unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "unzipped the files"
 
-cp /home/ec2-user/repos/expense.conf /etc/nginx/system.d/expense.conf  &>>$LOGFILE
-VALIDATE $? "Proxy Created"
+cp /home/ec2-user/expenses-shell/expense.conf /etc/nginx/system.d/expense.conf  &>>$LOGFILE
+VALIDATE $? " copied"
 
 systemctl restart nginx &>>$LOGFILE
 VALIDATE $? "Restarted successfully"

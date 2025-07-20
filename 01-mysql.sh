@@ -46,11 +46,11 @@ VALIDATE $? "Starting service of mysql-server"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 $LOG
 # VALIDATE $? "Setting up the root password"
 
-mysql -h 172.31.85.69 -uroot -p${my_sql_password} -e 'SHOW DATABASES;' &>>$LOGFILE
-if [ $? -ne 0 ]
-then 
-    mysql_secure_installation --set-root-pass ${my_sql_password}
-    VALIDATE $? "Password setuped successfully" &>>$LOGFILE
-else
-    echo -e "Password is already set .. $Y Skipping $N"
-fi
+# mysql -h 172.31.85.69 -uroot -p${my_sql_password} -e 'SHOW DATABASES;' &>>$LOGFILE
+# if [ $? -ne 0 ]
+# then 
+#     mysql_secure_installation --set-root-pass ${my_sql_password}
+#     VALIDATE $? "Password setuped successfully" &>>$LOGFILE
+# else
+#     echo -e "Password is already set .. $Y Skipping $N"
+# fi

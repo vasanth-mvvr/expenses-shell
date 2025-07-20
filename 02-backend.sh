@@ -39,13 +39,13 @@ VALIDATE $? "Enabled nodejs version --20"
 dnf install nodejs -y &>>$LOGFILE
 VALIDATE $? "Installed nodejs successfully"
 
-id expense &>>$LOGFILE
+id=expense &>>$LOGFILE
 if [ $id -ne 0 ]
 then 
     useradd expense &>>$LOGFILE
     VALIDATE $? "user added successfully"
 else
-    echo "User is already created $Y Skipping $N"
+    echo -e "User is already created $Y Skipping $N"
 fi
 
 mkdir -p /app &>>$LOGFILE #Here -p is used for validating if the directory is present it ignores or else it creates a new directory
@@ -79,7 +79,7 @@ VALIDATE $? "Installed mysql"
 mysql -h db.vasanthreddy.space -uroot -p${my_sql_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "Schema loaded"
 
-systemctl restart mysql &>>$LOGFILE
+systemctl restart backend &>>$LOGFILE
 VALIDATE $? "Restarted mysql"
 
 

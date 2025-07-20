@@ -4,7 +4,7 @@ USERID=$(id -u)
 TIMESTAMP=$(+date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
-LOG=&>>$LOGFILE
+
 
 R="\e[31m"
 G="\e[32m"
@@ -12,7 +12,7 @@ Y="\e[33m"
 N="\e[0m"
 
 VALIDATE(){
-    if [$1 -ne 0 ]
+    if [ $1 -ne 0 ]
     then 
         echo -e "$2 $R Failed $N"
     else
@@ -23,6 +23,7 @@ VALIDATE(){
 if [ $USERID -ne 0 ]
 then 
     echo -e " $Y You need to have super user access $N"
+    exit 1
 else 
     echo "you are super user"
 fi
@@ -34,7 +35,7 @@ VALIDATE $? "Installing mysql-server"
 systemctl enabling mysqld &>>$LOGFILE
 VALIDATE $? "Enabling service of mysql-server"
 
-systemctl start mysqld &>>$LOG
+systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "Starting service of mysql-server"
 
 #Here the disadvantage is that once we set up the password it cannot be repeated and we should make sure that it is idempotent in nature in the shell script .

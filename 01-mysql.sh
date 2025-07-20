@@ -43,7 +43,7 @@ VALIDATE $? "Starting service of mysql-server"
 #Here the disadvantage is that once we set up the password it cannot be repeated and we should make sure that it is idempotent in nature in the shell script .
 #Idempotent means how many ever times you run it should of be the same.
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 $LOGFILE
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 VALIDATE $? "Setting up the root password"
 
 # mysql -h 172.31.85.69 -uroot -p${my_sql_password} -e 'SHOW DATABASES;' &>>$LOGFILE

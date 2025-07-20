@@ -46,7 +46,7 @@ VALIDATE $? "Starting service of mysql-server"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 # VALIDATE $? "Setting up the root password"
 
-mysql -h db.vasanthreddy.space -uroot -p${my_sql_password} -e 'SHOW DATABASES;' &>>$LOGFILE
+mysql -h db.vasanthreddy.space -uroot -p${my_sql_password} -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then 
     mysql_secure_installation --set-root-pass ${my_sql_password}

@@ -50,7 +50,7 @@ mysql -h 172.31.85.69 -uroot -p${my_sql_password} -e 'SHOW DATABASES;' &>>$LOGFI
 if [ $? -ne 0 ]
 then 
     mysql_secure_installation --set-root-pass ${my_sql_password}
-    VALIDATE $? "Password setuped successfully" &>>$LOGFILE
+    VALIDATE $? "Password setup " &>>$LOGFILE
 else
     echo -e "Password is already set .. $Y Skipping $N"
 fi

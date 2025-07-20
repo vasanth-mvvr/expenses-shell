@@ -7,7 +7,7 @@ LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 LOG=&>>$LOGFILE
 
 R="\e[31m"
-G="\[32m"
+G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 

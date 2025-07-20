@@ -45,38 +45,38 @@ then
 else
     echo "User is already created $Y Skipping $N"
 
-mkdir -p /app  #Here -p is used for validating if the directory is present it ignores or else it creates a new directory
+mkdir -p /app &>>$LOGFILE #Here -p is used for validating if the directory is present it ignores or else it creates a new directory
 VALIDATE $? "directory created successfully"
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE $? "Extracted backend code"
 
 cd /app
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "Extracted file successfully"
 
-npm install 
+npm install &>>$LOGFILE
 VALIDATE $? "Installed dependencies"
 
-cp /home/ec2-user/expenses-shell/backend.service /etc/systemd/system/backend.service
+cp /home/ec2-user/expenses-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "backend.service intiated successfully"
 
-systemctl daemon-reload
+systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? "deamon-reload backend"
 
-systemctl start backend
+systemctl start backend &>>$LOGFILE
 VALIDATE $? "Started backend"
 
-systemctl enable backend
+systemctl enable backend &>>$LOGFILE
 VALIDATE $? "Enabled backend"
 
-dnf install mysql -y
+dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "Installed mysql"
 
-mysql -h db.vasanthreddy.space -uroot -p${my_sql_password} < /app/schema/backend.sql
+mysql -h db.vasanthreddy.space -uroot -p${my_sql_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "Schema loaded"
 
-systemctl restart mysql
+systemctl restart mysql &>>$LOGFILE
 VALIDATE $? "Restarted mysql"
 
 

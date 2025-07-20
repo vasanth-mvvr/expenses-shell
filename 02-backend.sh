@@ -19,6 +19,7 @@ VALIDATE(){
         echo -e "$2  $R Failed $N"
     else 
         echo -e "$2 $G Success $N"
+        fi
 }
 
 if [ $USERID -ne 0 ]
@@ -44,6 +45,7 @@ then
     VALIDATE $? "user added successfully"
 else
     echo "User is already created $Y Skipping $N"
+fi
 
 mkdir -p /app &>>$LOGFILE #Here -p is used for validating if the directory is present it ignores or else it creates a new directory
 VALIDATE $? "directory created successfully"

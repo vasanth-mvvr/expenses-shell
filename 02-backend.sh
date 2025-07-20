@@ -55,6 +55,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "Extracted backend code"
 
 cd /app
+rm -rf /app/* &>>$LOGFILE
 unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "Extracted file successfully"
 
